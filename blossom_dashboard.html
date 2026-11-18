@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pressure Index: who holds when it’s 50-50?</title>
+<style>
+:root{--bg:#fff;--panel:#fff;--ink:#111;--mut:#666;--line:#ddd;--pk:#EA1A85;--nv:#254AA5;--navy:#0b1f5c;--ok:#2e7d32;--bad:#b3261e;--soft:#f6f6f9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16181d;--panel:#1d2026;--ink:#eee;--mut:#a3a8b1;--line:#33373f;--pk:#ff5fae;--nv:#7f9ef0;--ok:#66bb6a;--bad:#ef7b72;--soft:#23262d}}
+:root[data-theme=dark]{--bg:#16181d;--panel:#1d2026;--ink:#eee;--mut:#a3a8b1;--line:#33373f;--pk:#ff5fae;--nv:#7f9ef0;--ok:#66bb6a;--bad:#ef7b72;--soft:#23262d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif;border-top:6px solid var(--pk)}
+h1,h2,h3,.ui{font-family:Arial,Helvetica,sans-serif}
+main{max-width:1060px;margin:0 auto;padding:22px 18px 70px}
+h1{font-size:clamp(26px,4vw,36px);line-height:1.15;margin:.3em 0 .3em;font-weight:700}
+h2{font-size:22px;margin:2em 0 .3em;font-weight:700;border-bottom:2px solid var(--pk);padding-bottom:6px}
+.lede{max-width:40em;color:var(--mut);font-size:16px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:22px 0}
+.facts b{font-size:22px;color:var(--ink);display:block;line-height:1}.facts span{font-size:13px;color:var(--mut)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px}
+.btn{font:600 14px Arial,Helvetica,sans-serif;border:1px solid var(--line);background:none;color:var(--ink);padding:7px 13px;border-radius:4px;cursor:pointer}
+.btn:hover{border-color:var(--nv)}.btn.on{background:var(--nv);border-color:var(--nv);color:var(--bg)}
+.ctl{background:var(--panel);padding-bottom:4px}
+@media(min-width:760px){.ctl{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;border-bottom:1px solid var(--line);margin:-16px -16px 8px;padding:16px 16px 6px}}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.tabs .btn{font-size:15px;padding:8px 16px}.tabs .sp{flex:1}
+.pre{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 10px;font-size:13px;color:var(--mut)}
+button:focus-visible,input:focus-visible,select:focus-visible,.nmb:focus-visible{outline:3px solid var(--pk);outline-offset:2px}
+.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 22px;margin:6px 0 10px;font-size:14px}
+.sl label{display:flex;justify-content:space-between;color:var(--mut)}.sl input{width:100%;accent-color:var(--pk)}
+.flt{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--mut);margin-bottom:6px}
+.flt input[type=search],.flt select{font:14px Arial,Helvetica,sans-serif;padding:7px 10px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.flt input[type=search]{min-width:180px;flex:1;max-width:280px}
+.board{position:relative}
+.row{display:grid;grid-template-columns:44px 1fr auto 36px;gap:10px;align-items:center;padding:9px 6px;border-top:1px solid var(--line);cursor:pointer;position:absolute;left:0;right:0;transition:top .45s cubic-bezier(.3,.8,.3,1);overflow:hidden}
+.row:hover{background:var(--soft)}
+.row .rk{font:700 18px Arial;color:var(--pk);line-height:1.1}.row.bench .rk{color:var(--mut)}.row.bench .nm,.row.bench .bar{opacity:.78}
+.dl{display:block;font:700 11px Arial;color:var(--mut)}.dl.up{color:var(--ok)}.dl.dn{color:var(--bad)}
+.nm{font:600 17px Arial}.nmb{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}.nmb:hover{text-decoration:underline;text-decoration-color:var(--pk);text-underline-offset:3px}
+.sub{font-size:13px;color:var(--mut);font-family:Arial}
+.bar{height:7px;border-radius:4px;background:var(--line);margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--nv)}
+.sc{font:700 18px Arial;text-align:right}
+.star{font-size:20px;line-height:1;background:none;border:0;color:var(--mut);cursor:pointer;padding:4px;border-radius:4px}.star.on{color:var(--pk)}.star:hover{color:var(--pk)}
+.tag{font:12px Arial;color:var(--mut);margin-left:8px}
+.det{grid-column:2/5;display:none;font-size:15px;padding:8px 0 4px}.row.open .det{display:block}
+.ph{display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 8px}.ph>div{min-width:110px}.ph b{font:700 16px Arial}.pos{color:var(--ok)}.neg{color:var(--bad)}
+.trk{position:relative;height:6px;background:var(--line);border-radius:3px;margin-top:4px;width:110px}.trk:after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--mut)}.trk i{position:absolute;top:0;bottom:0;border-radius:3px}.trk i.p{background:var(--ok)}.trk i.n{background:var(--bad)}
+.dots{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--ok)}.dots i.n{background:var(--line)}
+.empty{padding:22px 6px;color:var(--mut);border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+svg{width:100%;height:auto;display:block}svg text{font:12px Arial,Helvetica,sans-serif;fill:var(--ink)}
+.note{font-size:14px;color:var(--mut);max-width:46em}
+.how{columns:2 300px;column-gap:30px;font-size:16px}.how p{margin:0 0 .8em;break-inside:avoid}
+.badge{display:inline-block;background:var(--navy);color:#fff;font:700 12px Arial;letter-spacing:.08em;padding:5px 10px;border-radius:3px;border-left:4px solid #EA1A85}
+.chip{font:600 11px Arial;padding:2px 8px;border-radius:10px;margin-left:8px;color:#fff;white-space:nowrap;display:inline-block}.ch-h{background:#2e7d32}.ch-p{background:#254AA5}.ch-i{background:#b26a00}.ch-r{background:#b3261e}
+.chip.pk{background:#EA1A85;margin:0 6px 6px 0;padding:5px 10px;font-size:13px;border:0;cursor:pointer}.chip.pk:hover{filter:brightness(1.1)}
+.leg{font-size:13px;color:var(--mut);margin-top:10px}ol{margin:6px 0 10px;padding-left:22px}ol li{margin:2px 0}
+.cp{font:600 14px Arial;border:0;background:var(--pk);color:#fff;padding:8px 14px;border-radius:4px;cursor:pointer}.cp.alt{background:none;border:1px solid var(--line);color:var(--ink);margin-left:6px}
+ul.sl2{list-style:none;padding:0;margin:8px 0}ul.sl2 li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+svg line.z{stroke:var(--mut);stroke-width:1.5}svg .mp{cursor:pointer}svg .lb{paint-order:stroke;stroke:var(--panel);stroke-width:3px;font-size:11px}
+.sr{position:absolute;left:-9999px}
+@media(prefers-reduced-motion:reduce){.row{transition:none}}
+@media print{.ctl .sl,.ctl .pre,.flt,.tabs,.star,.cp,.btn{display:none!important}.row{transition:none}}
+</style></head><body><main>
+<div class="top"><span class="badge">RAJASTHAN ROYALS · IPL 2027 AUCTION · 195,000 DELIVERIES SINCE 2022</span><button class="btn" id="th" type="button" aria-label="Switch light and dark theme">◐ Theme</button></div>
+<h1>Who still delivers when the match is 50-50?</h1>
+<p class="lede">Every ball gets a pressure score from a win-probability model. Players are then judged only on the balls that swing a match, against what an average player does in the same situation.</p>
+<div class="facts"><div><b>22%</b><span>of balls count as pressure</span></div><div><b>69%</b><span>of them are in tight contests (win chance 25–75%), vs 28% of ordinary balls</span></div><div><b>0.88</b><span>chase-prediction AUC, tested on unseen matches</span></div><div><b>145 + 148</b><span>eligible batters and bowlers</span></div></div>
+
+<h2 id="board-h">Rankings</h2>
+<p class="note">Rating = performance under pressure, resilience (pressure form vs the player’s own normal form) and consistency (share of pressure matches with a positive impact). Pick a preset or move the sliders and the table re-sorts. Click a player for the detail, and tap the star to build a shortlist. Top 10 are highlighted. Showing the top 25 of 145 batters and 148 bowlers. Reliability of the underlying measures is low, so treat gaps of a few places as ties.</p>
+<div class="panel"><div class="ctl"><div class="tabs" role="group" aria-label="Role"><button class="btn on" id="tb" type="button" aria-pressed="true">Batters</button><button class="btn" id="tw" type="button" aria-pressed="false">Bowlers</button><span class="sp"></span><button class="btn" id="csv" type="button">Download CSV</button></div>
+<div class="pre" id="pre" role="group" aria-label="Weight presets">Presets:</div>
+<div class="sl"><div><label for="s1">Performance <span id="v1"></span></label><input id="s1" type="range" min="0" max="100" value="55"></div><div><label for="s2">Resilience <span id="v2"></span></label><input id="s2" type="range" min="0" max="100" value="20"></div><div><label for="s3">Consistency <span id="v3"></span></label><input id="s3" type="range" min="0" max="100" value="25"></div></div>
+<div class="flt"><label class="sr" for="q">Search players</label><input id="q" type="search" placeholder="Search player…" autocomplete="off"><label for="fl">Confidence</label><select id="fl"><option value="all">All players</option><option value="hp">High confidence + Promising</option><option value="h">High confidence only</option><option value="nr">Hide High risk</option></select><span id="cnt" aria-live="polite"></span></div></div>
+<div class="board" id="board"></div><div class="empty" id="empty" hidden>No players match this search and filter.</div>
+<p class="leg"><span class="chip ch-h" style="margin:0">High confidence</span> 60%+ positive matches, 250+ pressure balls &nbsp;<span class="chip ch-p">Promising</span> 60%+ positive, smaller sample &nbsp;<span class="chip ch-i">Inconsistent</span> 45–59% &nbsp;<span class="chip ch-r">High risk</span> under 45%. &nbsp;<b>▲▼</b> shows places gained or lost against the default 55/20/25 weighting.</p></div>
+
+<h2>Your top 10 picks</h2><p class="note">Follows the sliders above. Copy straight into the submission form.</p>
+<div class="grid"><div class="panel"><h3 style="margin:0">Batters</h3><ol id="pb"></ol><button class="cp" type="button" data-l="pb">Copy list</button></div><div class="panel"><h3 style="margin:0">Bowlers</h3><ol id="pw"></ol><button class="cp" type="button" data-l="pw">Copy list</button></div></div>
+
+<h2>My shortlist</h2><p class="note">Stars from the table collect here, across batters and bowlers. Saved in this browser where storage is available.</p>
+<div class="panel"><div id="sl"></div><div id="slb" style="margin-top:6px"><button class="cp" type="button" id="slc">Copy shortlist</button><button class="cp alt" type="button" id="slx">Clear</button></div></div>
+
+<h2>Performance vs consistency</h2><p class="note">Each dot is a player in the role selected above. Further right is stronger under pressure, higher up is steadier match to match, and bigger dots have more pressure balls behind them. Top 10 by your weights are pink. Dashed lines mark the median. Click a dot to open that player in the table.</p>
+<div class="panel"><svg id="map" viewBox="0 0 700 340" role="img" aria-label="Scatter of performance against consistency for the players in the table. The table above holds the same data."></svg></div>
+
+<h2>Where Rajasthan Royals leak under pressure</h2>
+<p class="lede" id="rrlede"></p>
+<div class="grid"><div class="panel"><h3 style="margin:0 0 6px;font-size:17px">Bowling impact under pressure, IPL teams</h3><svg id="c1" viewBox="0 0 400 285" role="img" aria-label="IPL teams ranked by bowling impact under pressure"></svg><p class="note">Win-probability points per 100 balls vs an average bowler. Closer to zero is better.</p></div>
+<div class="panel"><h3 style="margin:0 0 6px;font-size:17px">RR by phase vs league</h3><svg id="c2" viewBox="0 0 400 285" role="img" aria-label="RR bowling by phase against league average and best team"></svg><p class="note">The gap opens at the death. Bowlers marked “strong at the death” in the table add more than +100 there.</p></div></div>
+<div class="panel" style="margin-top:16px"><h3 style="margin:0 0 6px;font-size:17px">RR IPL wins by season</h3><svg id="c3" viewBox="0 0 700 90" role="img" aria-label="RR wins per season"></svg></div>
+
+<div class="panel" style="margin-top:16px"><h3 style="margin:0 0 8px;font-size:17px">Death-over targets for RR</h3><div id="dt"></div><p class="note">Bowlers adding +100 or more per 100 pressure balls at the death. Click a name to open them in the table. Small samples: check overseas slots, price and availability before shortlisting.</p></div>
+<h2>How it works, and where it’s weak</h2>
+<div class="how"><p><b>Pressure.</b> A gradient-boosted model estimates win probability before every ball from score, wickets, balls left, required rate, venue par and team strength. Leverage is how far the next ball can move that number. Balls at 1.5× average leverage or more are pressure.</p>
+<p><b>Performance.</b> Runs over expected, boundary-minus-dot rate, wicket security and win-probability added, each against the average for that over and wickets state. Scores shrink toward zero for small samples. Weaker opposition counts half.</p>
+<p><b>Limits.</b> Wicket and win-probability measures are noisy: split-half reliability is low, so ball-quality measures carry the most weight. Samples are 80 to 500 pressure balls. Fielding, run-outs and bowler-batter matchups are not modelled.</p></div>
+</main>
+<script>
+const D={"bat":[["Phil Salt",327,54,42,2.51,1.3,2.22,21,28,4.1,[113,131,null],94],["Prabhsimran Singh",418,47,100,2.19,1.96,1.71,24,35,4.3,[123,55,null],88],["Dinesh Karthik",120,23,79,1.94,1.46,1.7,9,12,1.8,[null,37,252],50],["Ashutosh Sharma",84,13,100,2.23,1.1,0.98,6,9,2.6,[null,null,388],0],["Rachin Ravindra",176,22,61,1.58,2.43,1.22,10,15,1.3,[45,57,222],44],["Virat Kohli",498,59,88,1.64,1.64,1.28,23,36,3.8,[103,56,136],56],["David Miller",309,32,82,1.87,2.21,0.17,10,19,5.6,[157,153,242],44],["Glenn Maxwell",139,27,56,1.64,1.13,1.49,8,11,3.0,[-63,123,1250],25],["Shashank Singh",91,15,100,1.89,0.46,1.12,5,7,1.9,[null,127,387],19],["Salman Agha",107,15,0,1.15,1.61,1.67,7,9,0.1,[56,102,null],6],["Ryan Rickelton",248,30,69,1.68,1.49,0.52,13,23,1.7,[42,157,null],50],["Washington Sundar",91,17,79,0.98,1.01,1.89,8,10,1.3,[null,58,184],6],["Mitchell Marsh",543,58,56,1.25,1.17,0.97,23,38,2.6,[60,36,114],19],["Jitesh Sharma",182,29,94,1.01,1.25,1.3,12,18,0.8,[null,53,77],31],["Rahul Tripathi",247,29,96,0.82,1.86,1.2,13,20,1.5,[39,104,null],38],["Daryl Mitchell",217,24,8,1.41,1.39,0.19,9,17,1.9,[90,108,49],12],["George Dockrell",106,14,0,1.16,1.5,0.54,7,12,1.5,[null,38,257],0],["Jacob Bethell",105,12,59,0.92,0.75,1.41,6,8,0.7,[-13,58,null],0],["Rinku Singh",262,29,89,1.07,0.37,1.36,14,21,3.4,[null,24,279],19],["Shreyas Iyer",313,40,77,1.41,0.68,0.3,14,26,3.0,[19,122,271],19],["Tim David",259,36,49,1.3,-0.28,1.27,15,23,3.2,[null,-33,243],12],["Priyansh Arya",137,25,100,1.38,-0.86,1.54,10,14,1.1,[78,null,null],19],["Mohammad Haris",109,19,17,0.73,1.89,0.6,6,10,-0.3,[-93,25,null],6],["Heinrich Klaasen",183,27,75,1.34,-0.45,1.12,11,17,1.6,[-135,118,157],6],["Saim Ayub",182,28,0,0.43,1.56,1.22,10,15,1.1,[53,93,null],25]],"bowl":[["Saim Ayub",114,14,0,1.99,0.96,2.73,9,10,1.4,[277,56,null],0],["Mark Adair",248,28,0,1.95,1.98,1.68,15,22,2.1,[61,null,157],56],["Sunil Narine",332,38,100,2.0,0.6,2.4,21,28,2.1,[101,38,198],62],["Joshua Little",196,22,37,1.85,1.71,1.76,12,17,1.4,[100,87,-30],56],["Mitchell Santner",298,43,34,1.9,1.14,2.07,20,28,2.6,[60,74,184],69],["Jacob Duffy",201,26,9,1.65,1.77,1.79,14,20,1.5,[110,null,-29],56],["Rashid Khan",537,64,74,1.9,1.01,1.69,29,44,2.8,[-7,66,48],62],["Maheesh Theekshana",451,55,35,1.85,1.73,0.87,22,38,1.3,[54,22,-33],31],["Wanindu Hasaranga",424,44,43,1.65,1.23,1.58,21,32,1.9,[117,31,75],50],["Richard Ngarava",141,21,0,1.6,0.78,1.72,10,14,0.4,[58,null,-49],31],["Matheesha Pathirana",253,28,66,2.03,0.71,0.72,12,21,-0.4,[null,0,-39],44],["Lockie Ferguson",242,35,58,1.84,1.63,0.1,11,22,0.8,[82,156,-137],19],["Patrick Cummins",173,28,80,1.64,2.16,0.1,10,20,1.0,[45,119,52],31],["Shaheen Afridi",336,37,0,1.37,1.37,0.73,17,30,1.2,[52,-55,-10],44],["Josh Hazlewood",366,46,63,1.61,1.1,0.39,18,34,0.7,[30,-18,10],12],["Abrar Ahmed",149,18,0,1.18,-0.36,2.07,10,13,0.8,[80,25,null],19],["Bhuvneshwar Kumar",618,72,72,1.03,0.91,1.32,34,55,1.4,[37,-163,34],38],["Mustafizur Rahman",368,51,31,1.39,0.2,1.02,22,37,0.3,[48,101,-97],12],["Mahedi Hasan",253,30,0,1.14,-0.3,1.49,17,26,1.2,[110,-17,-52],19],["Jimmy Neesham",116,18,0,0.52,1.18,1.66,8,11,0.8,[-22,43,216],12],["Ishant Sharma",102,15,100,0.76,1.51,0.76,6,10,0.7,[34,null,null],6],["Gerald Coetzee",101,15,39,1.37,0.98,-0.18,6,13,1.4,[68,null,300],6],["Krunal Pandya",303,32,100,0.87,0.77,1.0,15,25,0.1,[-62,15,null],0],["Sikandar Raza",165,22,12,0.83,-0.01,1.72,10,14,1.2,[212,59,null],6],["Umran Malik",107,17,67,0.82,1.2,0.76,6,10,0.1,[null,-76,278],19]],"teams":[["GT",-4],["MI",-19],["RCB",-26],["KKR",-27],["DC",-39],["LSG",-41],["RR",-49],["SRH",-51],["CSK",-55],["PBKS",-60]],"rr":[[-27,-23,2],[-38,-29,2],[-117,-86,-2]],"wins":[[2022,10,17],[2023,7,14],[2024,9,16],[2025,4,14],[2026,9,16]],"nb":145,"nw":148};
+let role='bat',openN=null,fl='all',q='';
+const $=id=>document.getElementById(id),H=56,DEF=[55,20,25],ids=n=>n.replace(/\W/g,''),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const w=()=>[+$('s1').value,+$('s2').value,+$('s3').value],pct=(v,s)=>s?Math.round(v/s*100):0;
+const sco=(p,ws)=>{const s=ws[0]+ws[1]+ws[2]||1;return(ws[0]*p[4]+ws[1]*p[5]+ws[2]*p[6])/s};
+const rel=p=>{const s=p[7]/p[8];return s>=.6?(p[1]>=250?['High confidence','ch-h','h']:['Promising','ch-p','p']):s>=.45?['Inconsistent','ch-i','i']:['High risk','ch-r','r']};
+const list=(r,ws)=>D[r].map(p=>({p,sc:sco(p,ws)})).sort((a,b)=>b.sc-a.sc);
+const ranks=(r,ws)=>{const m={};list(r,ws).forEach((x,i)=>m[x.p[0]]=i+1);return m};
+const passes=(rl,f)=>f=='all'||(f=='h'&&rl[2]=='h')||(f=='hp'&&(rl[2]=='h'||rl[2]=='p'))||(f=='nr'&&rl[2]!='r');
+const RN={bat:'Batter',bowl:'Bowler'},reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let SL=[];try{SL=JSON.parse(localStorage.getItem('rrsl')||'[]')}catch(e){}
+const saveSL=()=>{try{localStorage.setItem('rrsl',JSON.stringify(SL))}catch(e){}};
+const key=(r,n)=>r+'|'+n,isSL=n=>SL.includes(key(role,n));
+function copyText(b,t,lab){try{navigator.clipboard.writeText(t);b.textContent='Copied'}catch(e){b.textContent='Select and copy manually'}setTimeout(()=>b.textContent=lab,1500)}
+const PRE=[['Default',[55,20,25]],['Performance first',[80,10,10]],['Reliable',[30,20,50]],['Form vs own normal',[30,50,20]]];
+PRE.forEach(([n,v])=>{const b=document.createElement('button');b.type='button';b.className='btn';b.textContent=n;b.onclick=()=>{['s1','s2','s3'].forEach((id,i)=>$(id).value=v[i]);render()};$('pre').appendChild(b)});
+function phase(n,v){const wd=v==null?0:Math.min(Math.abs(v),300)/300*50,st=v==null?'':v>0?`left:50%;width:${wd}%`:`left:${50-wd}%;width:${wd}%`;
+return `<div><span class="sub">${n}</span><br><b class="${v>0?'pos':'neg'}">${v==null?'–':(v>0?'+':'')+v}</b><div class="trk"><i class="${v>0?'p':'n'}" style="${st}"></i></div></div>`}
+function picks(ws){['bat','bowl'].forEach((r,k)=>{$(k?'pw':'pb').innerHTML=list(r,ws).slice(0,10).map(x=>{const rl=rel(x.p);return `<li>${esc(x.p[0])}<span class="chip ${rl[1]}" aria-label="${rl[0]}">${rl[0]}</span></li>`}).join('')})}
+function shortlist(){const el=$('sl');if(!SL.length){el.innerHTML='<p class="note" style="margin:0">Nothing starred yet. Tap ☆ beside a player in the table.</p>';$('slb').hidden=true;return}
+$('slb').hidden=false;el.innerHTML='<ul class="sl2">'+SL.map(k=>{const[r,n]=k.split('|'),p=D[r].find(x=>x[0]==n);if(!p)return'';const rl=rel(p);return `<li><span>${esc(n)} <span class="tag">${RN[r]}</span><span class="chip ${rl[1]}">${rl[0]}</span></span><button class="btn" type="button" data-rm="${esc(k)}">Remove</button></li>`}).join('')+'</ul>'}
+$('sl').onclick=e=>{const b=e.target.closest('[data-rm]');if(b){SL=SL.filter(k=>k!=b.dataset.rm);saveSL();render()}};
+$('slc').onclick=e=>copyText(e.target,SL.map(k=>{const[r,n]=k.split('|');return n+' ('+RN[r]+')'}).join('\n'),'Copy shortlist');
+$('slx').onclick=()=>{SL=[];saveSL();render()};
+function toggleStar(n){const k=key(role,n);SL=SL.includes(k)?SL.filter(x=>x!=k):[...SL,k];saveSL();render()}
+$('board').onclick=e=>{const st=e.target.closest('.star');if(st){toggleStar(st.dataset.n);return}const r=e.target.closest('.row');if(r){openN=openN===r.dataset.n?null:r.dataset.n;render()}};
+function render(){const ws=w(),s=ws.reduce((a,b)=>a+b,0)||1;['v1','v2','v3'].forEach((id,i)=>$(id).textContent=pct(ws[i],s)+'%');
+const fa=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.k:null;
+const L=list(role,ws),base=ranks(role,DEF),moved=ws.some((v,i)=>v!=DEF[i]),mx=Math.max(...L.map(x=>x.sc)),mn=Math.min(...L.map(x=>x.sc)),B=$('board');let y=0,shown=0;
+L.forEach((x,i)=>{const p=x.p,id='r_'+ids(p[0]);let r=document.getElementById(id);
+if(!r){r=document.createElement('div');r.id=id;r.dataset.n=p[0];B.appendChild(r)}
+const rl=rel(p);if(!((!q||p[0].toLowerCase().includes(q))&&passes(rl,fl))){r.style.display='none';return}
+shown++;const o=openN===p[0],fix=role=='bowl'&&p[10][2]!=null&&p[10][2]>=100,k=ids(p[0]),d=base[p[0]]-(i+1),on=isSL(p[0]);
+const dots=Array.from({length:p[8]},(_,j)=>`<i class="${j<p[7]?'':'n'}"></i>`).join('');
+r.className='row'+(i>=10?' bench':'')+(o?' open':'');r.style.display='';
+r.innerHTML=`<div class="rk">${i+1}${moved&&d?`<span class="dl ${d>0?'up':'dn'}" title="${Math.abs(d)} place${Math.abs(d)>1?'s':''} ${d>0?'up':'down'} vs default weights">${d>0?'▲':'▼'}${Math.abs(d)}</span>`:''}</div><div><div class="nm"><button type="button" class="nmb" data-k="n:${k}" aria-expanded="${o}">${esc(p[0])}</button>${fix?'<span class="tag">(strong at the death)</span>':''}<span class="chip ${rl[1]}">${rl[0]}</span></div><div class="sub">${p[1]} pressure balls · ${p[2]} matches · ${p[3]}% IPL</div><div class="bar"><i style="width:${8+92*(x.sc-mn)/(mx-mn||1)}%"></i></div></div><div class="sc">${x.sc.toFixed(2)}</div><button type="button" class="star${on?' on':''}" data-n="${esc(p[0])}" data-k="s:${k}" aria-pressed="${on}" aria-label="${on?'Remove from':'Add to'} shortlist: ${esc(p[0])}">${on?'★':'☆'}</button>
+<div class="det"><div class="ph">${['Powerplay','Middle','Death'].map((n,j)=>phase(n,p[10][j])).join('')}<div><span class="sub">Wins added</span><br><b>${p[9]}</b></div><div><span class="sub">Positive matches</span><br><b>${pct(p[7],p[8])}%</b></div>${p[11]!=null?`<div><span class="sub">Top-10 in resamples</span><br><b>${p[11]}%</b></div>`:''}<div><span class="sub">Perf · Resil · Consist</span><br><b>${p[4]} · ${p[5]} · ${p[6]}</b></div></div><span class="sub">Positive in ${p[7]} of ${p[8]} pressure matches (impact per 100 pressure balls by phase)</span><div class="dots">${dots}</div></div>`;
+r.style.height='auto';const h=r.offsetHeight||H;r.style.height=h+'px';r.style.top=y+'px';y+=h});
+B.style.height=y+'px';$('empty').hidden=shown>0;$('cnt').textContent=shown+' of '+L.length+' shown';
+picks(ws);shortlist();drawMap(L);
+if(fa){const el=document.querySelector('[data-k="'+fa+'"]');if(el)el.focus({preventScroll:true})}}
+function drawMap(L){const W=700,Ht=340,l=48,r=16,t=14,b=44,xs=L.map(x=>x.p[4]),ys=L.map(x=>x.p[6]);
+const x0=Math.min(...xs)-.15,x1=Math.max(...xs)+.15,y0=Math.min(...ys)-.15,y1=Math.max(...ys)+.15,sx=v=>l+(v-x0)/(x1-x0)*(W-l-r),sy=v=>t+(1-(v-y0)/(y1-y0))*(Ht-t-b);
+const med=a=>{const s=[...a].sort((m,n)=>m-n),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2};
+let h='';for(let i=0;i<=4;i++){const vx=x0+(x1-x0)*i/4,vy=y0+(y1-y0)*i/4;h+=`<text x="${sx(vx)}" y="${Ht-26}" text-anchor="middle" style="font-size:11px;fill:var(--mut)">${vx.toFixed(1)}</text><text x="${l-6}" y="${sy(vy)+4}" text-anchor="end" style="font-size:11px;fill:var(--mut)">${vy.toFixed(1)}</text><line x1="${l}" x2="${W-r}" y1="${sy(vy)}" y2="${sy(vy)}" stroke="var(--line)" stroke-width=".6"/>`}
+h+=`<line x1="${sx(med(xs))}" x2="${sx(med(xs))}" y1="${t}" y2="${Ht-b}" stroke="var(--mut)" stroke-dasharray="4 4"/><line x1="${l}" x2="${W-r}" y1="${sy(med(ys))}" y2="${sy(med(ys))}" stroke="var(--mut)" stroke-dasharray="4 4"/>`;
+h+=`<text x="${(l+W-r)/2}" y="${Ht-6}" text-anchor="middle" style="font-weight:700">Performance under pressure →</text><text transform="translate(12 ${(t+Ht-b)/2}) rotate(-90)" text-anchor="middle" style="font-weight:700">Consistency →</text>`;
+const ord=L.map((x,i)=>({x,i})).sort((a,b)=>(a.i<10)-(b.i<10));
+ord.forEach(({x,i})=>{const p=x.p,top=i<10,rr=3+Math.sqrt(p[1])/3.4,cx=sx(p[4]),cy=sy(p[6]),on=isSL(p[0]);
+h+=`<circle class="mp" data-n="${esc(p[0])}" cx="${cx}" cy="${cy}" r="${rr}" fill="${top?'var(--pk)':'var(--nv)'}" fill-opacity="${top?.85:.5}" stroke="${on?'var(--ink)':'var(--panel)'}" stroke-width="${on?2.5:1}"><title>${esc(p[0])} · rank ${i+1} · performance ${p[4]}, consistency ${p[6]}, ${p[1]} pressure balls</title></circle>`});
+ord.filter(o=>o.i<6).forEach(({x,i})=>{const p=x.p,cx=sx(p[4]),cy=sy(p[6]),end=cx>W-120;h+=`<text class="lb" x="${end?cx-8:cx+8}" y="${cy-6}" text-anchor="${end?'end':'start'}">${i+1}. ${esc(p[0])}</text>`});
+$('map').innerHTML=h}
+$('map').onclick=e=>{const c=e.target.closest('.mp');if(c)jump(c.dataset.n)};
+function jump(n){q='';$('q').value='';fl='all';$('fl').value='all';openN=n;render();const el=document.getElementById('r_'+ids(n));if(el)el.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'})}
+function sw(r){role=r;openN=null;$('tb').setAttribute('aria-pressed',r=='bat');$('tw').setAttribute('aria-pressed',r=='bowl');$('tb').classList.toggle('on',r=='bat');$('tw').classList.toggle('on',r=='bowl');$('board').innerHTML='';render()}
+$('tb').onclick=()=>sw('bat');$('tw').onclick=()=>sw('bowl');['s1','s2','s3'].forEach(i=>$(i).oninput=render);
+$('q').oninput=e=>{q=e.target.value.trim().toLowerCase();render()};$('fl').onchange=e=>{fl=e.target.value;render()};
+document.querySelectorAll('.cp[data-l]').forEach(b=>b.onclick=()=>copyText(b,[...$(b.dataset.l).children].map(l=>l.firstChild.textContent).join('\n'),'Copy list'));
+$('csv').onclick=()=>{const ws=w(),rows=[['Rank','Name','Role','Score','Pressure balls','Matches','IPL %','Performance','Resilience','Consistency','Positive matches','Pressure matches','Wins added','Powerplay','Middle','Death','Top-10 in resamples %','Confidence']];
+list(role,ws).forEach((x,i)=>{const p=x.p;rows.push([i+1,p[0],RN[role],x.sc.toFixed(3),p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8],p[9],...p[10],p[11],rel(p)[0]])});
+const t=rows.map(r=>r.map(v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"').join(',')).join('\n');
+try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='pressure-index-'+role+'.csv';document.body.appendChild(a);a.click();a.remove()}catch(e){copyText($('csv'),t,'Download CSV')}};
+$('th').onclick=()=>{const d=document.documentElement,cur=d.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');d.dataset.theme=cur=='dark'?'light':'dark'};
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(render,150)});
+render();
+// charts
+function dv(id,rows,zero,sc){let h=`<line class="z" x1="${zero}" x2="${zero}" y1="2" y2="268"/><text x="${zero-4}" y="281" text-anchor="end" style="font-size:11px;fill:var(--mut)">← worse</text><text x="${zero+4}" y="281" style="font-size:11px;fill:var(--mut)">better →</text>`;
+rows.forEach(r=>{const[n,v,y,hi,sm]=r,len=Math.abs(v)/sc,x=v<0?zero-len:zero;h+=`<text x="4" y="${y+(sm?11:13)}" ${sm?'style="font-size:11px"':''}>${n}</text><rect x="${x}" y="${y}" width="${len}" height="${sm?13:18}" rx="3" fill="${hi?'var(--pk)':'var(--nv)'}" opacity="${hi?1:.55}"><title>${n}: ${String(v).replace('-','−')}</title></rect><text x="${v<0?zero+6:zero+len+5}" y="${y+(sm?11:13)}" ${sm?'style="font-size:11px"':''}>${String(v).replace('-','−')}</text>`});$(id).innerHTML=h}
+dv('c1',D.teams.map((t,i)=>[t[0],t[1],14+i*25,t[0]=='RR']),310,60/240);
+(function(){const nm=['Powerplay','Middle','Death'],lab=['RR','League avg','Best team'];let rows=[];D.rr.forEach((r,i)=>r.forEach((v,k)=>rows.push([lab[k],v,30+i*84+k*18,k==0,1])));dv('c2',rows,300,125/215);
+nm.forEach((n,i)=>$('c2').innerHTML+=`<text x="4" y="${22+i*84}" style="font-weight:700">${n}</text>`)})();
+(function(){let h='';D.wins.forEach((w,i)=>{const x=10+i*135;h+=`<g><title>${w[0]}: ${w[1]} wins from ${w[2]} matches (${Math.round(w[1]/w[2]*100)}%)</title><text x="${x}" y="22">${w[0]}</text><text x="${x}" y="56" style="font:700 24px Arial">${w[1]}-${w[2]-w[1]}</text><rect x="${x}" y="68" width="110" height="6" rx="3" fill="var(--line)"/><rect x="${x}" y="68" width="${110*w[1]/w[2]}" height="6" rx="3" fill="${w[0]==2025?'var(--bad)':'var(--pk)'}"/></g>`});$('c3').innerHTML=h})();
+$('dt').innerHTML=D.bowl.filter(p=>p[10][2]>=100).sort((a,b)=>b[10][2]-a[10][2]).map(p=>`<button type="button" class="chip pk" data-n="${esc(p[0])}" title="${p[1]} pressure balls">${esc(p[0])} +${p[10][2]}</button>`).join('');
+$('dt').onclick=e=>{const b=e.target.closest('[data-n]');if(b){sw('bowl');jump(b.dataset.n)}};
+const tm=D.teams.findIndex(t=>t[0]=='RR')+1;$('rrlede').textContent=`In the IPL RR rank ${tm}th of 10 franchises for bowling impact under pressure, and the damage is concentrated at the death: ${D.rr[2][0]} per 100 balls against a league average of ${D.rr[2][1]}. They went 4-10 in 2025.`;
+</script></body></html>
